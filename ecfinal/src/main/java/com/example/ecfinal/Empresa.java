@@ -1,73 +1,82 @@
 package com.example.ecfinal;
 
+import java.util.Objects;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+@Entity
 public class Empresa {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+    private @Id @GeneratedValue Long id;
     private String nombre;
     private String razonSocial;
     private String rubro;
 
-    
+    private Empresa() {}
 
-    /**
-     * @return Long return the id
-     */
+    public Empresa(String nombre, String razonSocial, String rubro) {
+        this.nombre = nombre;
+        this.razonSocial = razonSocial;
+        this.rubro = rubro;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Empresa empresa = (Empresa) o;
+        return Objects.equals(id, empresa.id) &&
+                Objects.equals(nombre, empresa.nombre) &&
+                Objects.equals(razonSocial, empresa.razonSocial) &&
+                Objects.equals(rubro, empresa.rubro);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, razonSocial, rubro);
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", razonSocial='" + razonSocial + '\'' +
+                ", rubro='" + rubro + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * @return String return the nombre
-     */
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * @param nombre the nombre to set
-     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    /**
-     * @return String return the razonSocial
-     */
     public String getRazonSocial() {
         return razonSocial;
     }
 
-    /**
-     * @param razonSocial the razonSocial to set
-     */
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
     }
 
-    /**
-     * @return String return the rubro
-     */
     public String getRubro() {
         return rubro;
     }
 
-    /**
-     * @param rubro the rubro to set
-     */
     public void setRubro(String rubro) {
         this.rubro = rubro;
     }
-
 }
