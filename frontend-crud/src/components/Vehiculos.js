@@ -97,20 +97,20 @@ const Vehiculos = () => {
       <table>
         <thead>
           <tr>
+            <th>Marca</th>
             <th>Modelo</th>
             <th>Año</th>
             <th>Precio</th>
-            <th>Marca</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           {vehiculos.map(vehiculo => (
             <tr key={vehiculo.id}>
+              <td>{marcas.find(marca => marca.id === vehiculo.marcaId)?.nombre}</td>
               <td>{vehiculo.modelo}</td>
               <td>{vehiculo.año}</td>
               <td>{vehiculo.precio}</td>
-              <td>{marcas.find(marca => marca.id === vehiculo.marcaId)?.nombre}</td>
               <td>
                 <button onClick={() => handleEdit(vehiculo)}>Editar</button>
                 <button onClick={() => handleDelete(vehiculo.id)}>Eliminar</button>

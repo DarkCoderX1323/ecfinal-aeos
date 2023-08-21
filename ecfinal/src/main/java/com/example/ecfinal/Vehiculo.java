@@ -17,7 +17,7 @@ public class Vehiculo {
     private String modelo;
     private int año;
     private double precio;
-    private Long marcaId; // Cambiar a la referencia de la marca
+    private Long marcaId; 
 
 }
 
